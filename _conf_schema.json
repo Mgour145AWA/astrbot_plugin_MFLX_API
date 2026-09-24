@@ -1,0 +1,137 @@
+{
+  "base_url": {
+    "description": "面板地址",
+    "type": "string",
+    "default": "http://127.0.0.1:8570",
+    "hint": "面板「API 管理」中给出的「连接地址」，例如 http://192.168.1.10:8570 。可以只填到端口，插件会自动补上 /api/remote。注意：AstrBot 与面板不在同一台机器时，请不要用 127.0.0.1。",
+    "obvious_hint": true
+  },
+  "api_key": {
+    "description": "API Key",
+    "type": "string",
+    "default": "",
+    "hint": "面板「API 管理」页面里保存设置后显示的 Key。",
+    "secret": true,
+    "obvious_hint": true
+  },
+  "auth_mode": {
+    "description": "鉴权方式",
+    "type": "string",
+    "default": "header",
+    "options": [
+      "header",
+      "query"
+    ],
+    "hint": "header：通过请求头 X-API-Key 传递（推荐，兼容所有面板版本）；query：通过 URL 参数 ?key= 传递。",
+    "obvious_hint": true
+  },
+  "timeout": {
+    "description": "请求超时（秒）",
+    "type": "int",
+    "default": 15,
+    "hint": "启动或停止服务器可能耗时较久，若经常出现超时提示，可调大到 30 以上。最小 3 秒。"
+  },
+  "verify_ssl": {
+    "description": "校验 HTTPS 证书",
+    "type": "bool",
+    "default": true,
+    "hint": "面板使用自签名证书且为 https 时，可关闭此项。"
+  },
+  "use_system_proxy": {
+    "description": "使用系统代理环境变量",
+    "type": "bool",
+    "default": false,
+    "hint": "面板通常位于局域网内，保持关闭可避免代理环境变量（HTTP_PROXY 等）干扰内网请求。"
+  },
+  "default_log_lines": {
+    "description": "默认日志行数",
+    "type": "int",
+    "default": 100,
+    "hint": "执行 /mc log <服务器名> 未指定行数时使用。"
+  },
+  "max_log_lines": {
+    "description": "日志行数上限",
+    "type": "int",
+    "default": 500,
+    "hint": "无论用户填多少行，都不会超过这个上限。"
+  },
+  "max_reply_chars": {
+    "description": "单条回复最大字符数",
+    "type": "int",
+    "default": 1800,
+    "hint": "日志内容过长时会保留结尾部分并提示已省略，避免刷屏。"
+  },
+  "admin_only_read": {
+    "description": "查询类指令仅限管理员",
+    "type": "bool",
+    "default": false,
+    "hint": "开启后，list / status / log 也仅管理员可用（可能泄露服务器日志与内网信息，建议在公开群内开启）。"
+  },
+  "admin_only_write": {
+    "description": "管理类指令仅限管理员",
+    "type": "bool",
+    "default": true,
+    "hint": "开启后，start / stop / restart / cmd 仅管理员可用。强烈建议保持开启。"
+  },
+  "allow_any_command": {
+    "description": "允许执行任意游戏内指令",
+    "type": "bool",
+    "default": false,
+    "hint": "关闭时，只能执行「指令白名单」中的指令。开启后仍会拦截「指令黑名单」。",
+    "obvious_hint": true
+  },
+  "command_allowlist": {
+    "description": "指令白名单",
+    "type": "list",
+    "default": [
+      "list",
+      "tps",
+      "time",
+      "seed",
+      "help",
+      "say",
+      "tell",
+      "msg",
+      "weather",
+      "whitelist",
+      "banlist"
+    ],
+    "hint": "「允许执行任意指令」关闭时生效，只需填写指令本身，不必带斜杠。"
+  },
+  "command_blocklist": {
+    "description": "指令黑名单",
+    "type": "list",
+    "default": [
+      "stop",
+      "restart",
+      "reload",
+      "op",
+      "deop",
+      "ban",
+      "ban-ip",
+      "pardon",
+      "kick",
+      "kill",
+      "fill",
+      "setblock",
+      "execute",
+      "datapack",
+      "gamerule",
+      "save-all",
+      "save-off"
+    ],
+    "hint": "优先级高于白名单，即使用户开启了「允许执行任意指令」也会被拦截。"
+  },
+  "max_command_length": {
+    "description": "游戏内指令最大长度",
+    "type": "int",
+    "default": 256,
+    "hint": "超出长度的指令会被直接拒绝。"
+  },
+  "enable_llm_tool": {
+    "description": "启用 LLM 工具",
+    "type": "bool",
+    "default": true,
+    "hint": "开启后，AI 可在对话中自行调用面板接口（如「帮我看下服务器状态」）。"
+  }
+}

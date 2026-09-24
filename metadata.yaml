@@ -1,0 +1,17 @@
+name: astrbot_plugin_MFLX_API
+display_name: MFLX面板服务器面板远程控制
+short_desc: 在聊天里查看服务器状态与日志，一键启停你的 Minecraft 服务器。
+desc: 接入 Minecraft 服务器面板「API 管理」中开放的远程 API（/api/remote/*），可在聊天中查看服务器列表、运行状态与最近日志，并执行启动、停止、重启以及发送游戏内指令；内置权限控制与指令白/黑名单，同时提供 LLM 工具供 AI 直接调用。
+version: 1.0.0
+author: MFLX团队
+repo: https://github.com/Mgour145AWA/astrbot_plugin_MFLX_API
+astrbot_version: ">=4.5.0"
+support_platforms:
+  - aiocqhttp
+  - telegram
+  - discord
+  - lark
+  - dingtalk
+  - wecom
+  - slack
+  - kook
